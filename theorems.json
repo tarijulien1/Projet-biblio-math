@@ -1,0 +1,16 @@
+[
+    {
+        "id": "theoreme-1",
+        "title": "Théorème de Lagrange",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini et $H$ un sous-groupe de $G$. Alors $|H|$ divise $|G|$ : $$|H|\\mid |G|$$ \nDe plus, on note $[G:H]=\\dfrac{|G|}{|H|}$",
+        "demonstration_ids": [
+            "demo-11",
+            "demo-12"
+        ]
+    }
+]

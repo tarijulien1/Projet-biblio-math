@@ -1,0 +1,24 @@
+[
+    {
+        "id": "demo-11",
+        "theorem_id": "theoreme-1",
+        "title": "Démonstration par les classes à gauche",
+        "themes": [
+            "Groupes",
+            "Ensembles"
+        ],
+        "category": "Démonstrations",
+        "content": "Soit \\(G\\) un groupe fini et \\(H\\) un sous-groupe de \\(G\\). On souhaite démontrer que \\(|G|=[G:H]\\cdot |H|\\).\n\n **1. Les classes à gauche forment une partition de \\(G\\).**\n\nPour tout \\(a\\in G\\), on définit la classe à gauche de \\(H\\) par :\\[aH=\\{ah\\mid h\\in H\\}.\\]\n\nTout élément \\(a\\in G\\) appartient à sa classe \\(aH\\), car \\(e\\in H\\). \n\nDe plus, deux classes à gauche sont soit disjointes, soit égales. En effet, si \\(aH\\cap bH\\neq\\varnothing\\), alors il existe \\(h_1,h_2\\in H\\) tels que \\(ah_1=bh_2\\). On en déduit \\(a=b h_2h_1^{-1}\\), donc \\(aH=bH\\). Les classes à gauche forment ainsi une partition de \\(G\\).\n\n**2. Toutes les classes ont le même cardinal que \\(H\\).**\n\nPour tout \\(a\\in G\\), considérons l'application :\\[\\begin{aligned}f_a:H&\\longrightarrow aH\\\\h&\\longmapsto ah.\\end{aligned}\\]\n\nCette application est bijective : elle est injective car $ah_1= ah_2 \\Rightarrow a^{-1}ah_1=h_1=h_2$ et surjective par définition de \\(aH\\). Ainsi, \\(|aH|=|H|\\).\n\n**3. Dénombrement des éléments de \\(G\\).**\n\n Les classes à gauche forment une partition de \\(G\\) par **1**, et chacune contient exactement \\(|H|\\) éléments par **2**. En notant \\(k=[G:H]\\) le nombre de classes à gauche, on obtient :\n\\[|G|=|\\underset{gH\\in G/H}{\\bigsqcup gH}|=\\underbrace{|H|+\\cdots+|H|}_{k\\text{ fois}}=k|H|.\\]\n\nPar conséquent :\\[\\boxed{|G|=[G:H]\\cdot |H|}.\\]"
+    },
+    {
+        "id": "demo-12",
+        "theorem_id": "theoreme-1",
+        "title": "Démonstration par relation d'équivalence et dénombrement",
+        "themes": [
+            "Groupes",
+            "Cardinalité"
+        ],
+        "category": "Démonstrations",
+        "content": "Soit \\(G\\) un groupe fini et \\(H\\) un sous-groupe de \\(G\\). On définit sur \\(G\\) la relation suivante :\\[x\\sim y\\iff x^{-1}y\\in H.\\]\n\n**1. \\(\\sim\\) est une relation d'équivalence.**\n\n- Réflexivité : pour tout \\(x\\in G\\), on a \\(x^{-1}x=e\\in H\\). Donc \\(x\\sim x\\).\n\n- Symétrie : si \\(x\\sim y\\), alors \\(x^{-1}y\\in H\\). Comme \\(H\\) est un sous-groupe, son inverse \\(y^{-1}x\\) appartient également à \\(H\\). Donc \\(y\\sim x\\).\n\n- Transitivité : si \\(x\\sim y\\) et \\(y\\sim z\\), alors \\(x^{-1}y\\in H\\) et \\(y^{-1}z\\in H\\). Par stabilité de \\(H\\) par produit, on a :\n\n\\[x^{-1}z=(x^{-1}y)(y^{-1}z)\\in H.\\]\n\nDonc \\(x\\sim z\\).\n\n**2. Déterminons les classes d'équivalence.**\n\nPour tout \\(x\\in G\\), sa classe d'équivalence est :\\[\\begin{aligned}[x]&=\\{y\\in G\\mid x^{-1}y\\in H\\}\\\\&=\\{xh\\mid h\\in H\\}\\\\&=xH.\\end{aligned}\\]\n\nLes classes d'équivalence sont donc exactement les classes à gauche modulo \\(H\\).\n\n**3. Dénombrons les éléments de \\(G\\).**\n\nLes classes d'équivalence forment une partition de \\(G\\). De plus, pour tout \\(x\\in G\\), l'application :\\[\\begin{aligned}f_x:H&\\longrightarrow [x]\\\\h&\\longmapsto xh\\end{aligned}\\]\n\nest une bijection. Chaque classe d'équivalence contient donc exactement \\(|H|\\) éléments.\n\nEn notant \\(k=[G:H]\\) le nombre de classes d'équivalence, on obtient :\n\\[|G|=k\\cdot |H|.\\]\n\nAinsi :\\[\\boxed{|G|=[G:H]\\cdot |H|}.\\]"
+    }
+]
