@@ -1,4 +1,5 @@
 
+import html
 import streamlit as st
 
 from app.Définitions.gestion_definitions import (
@@ -68,6 +69,252 @@ def display_themes(themes):
 
 
 # ============================================================
+# PRÉREQUIS DES DÉMONSTRATIONS
+# ============================================================
+
+def build_prerequisite_catalog(definitions, theorems):
+    """
+    Construit le catalogue des définitions et théorèmes
+    pouvant être utilisés comme prérequis.
+
+    Les propriétés pourront être ajoutées au catalogue
+    lorsqu'elles disposeront de leur propre source de données.
+    """
+
+    catalog = {}
+
+    for item in definitions + theorems:
+
+        item_id = item.get("id")
+
+        if not item_id:
+            continue
+
+        category = item.get("category", "Définitions")
+        category_lower = category.casefold()
+
+        if "théorème" in category_lower or "theoreme" in category_lower:
+            item_type = "theorem"
+
+        elif "propriété" in category_lower or "propriete" in category_lower:
+            item_type = "property"
+
+        else:
+            item_type = "definition"
+
+        key = f"{item_type}:{item_id}"
+
+        catalog[key] = {
+            "id": item_id,
+            "type": item_type,
+            "title": item.get("title", "Sans titre"),
+            "content": item.get("content", "")
+        }
+
+    return catalog
+
+
+def resolve_prerequisite(prerequisite, catalog):
+    """Retrouve l'élément associé à un prérequis."""
+
+    if not isinstance(prerequisite, dict):
+        return None
+
+    ref_id = prerequisite.get("ref_id")
+
+    if not ref_id:
+        return None
+
+    for item in catalog.values():
+
+        if item["id"] == ref_id:
+            return item
+
+    return None
+
+
+def display_prerequisites(prerequisites, catalog):
+    """
+    Affiche les prérequis :
+
+    - bleu avec infobulle si la référence existe ;
+    - rouge si la référence est absente.
+    """
+
+    if not prerequisites:
+        return
+
+    st.markdown("**Prérequis :**")
+
+    resolved = []
+    unresolved = []
+
+    for prerequisite in prerequisites:
+
+        if not isinstance(prerequisite, dict):
+            continue
+
+        item = resolve_prerequisite(prerequisite, catalog)
+        label = prerequisite.get("label", "")
+
+        if not isinstance(label, str) or not label.strip():
+            continue
+
+        if item is not None:
+
+            resolved.append({
+                "keyword": label,
+                "title": item["title"],
+                "content": item["content"]
+            })
+
+        else:
+
+            unresolved.append(label)
+
+    # Prérequis référencés : infobulles
+    if resolved:
+
+        labels = "\n\n".join(
+            f"- {item['keyword']}"
+            for item in resolved
+        )
+
+        tooltip_data = [
+            {
+                "keywords": [item["keyword"]],
+                "title": item["title"],
+                "content": item["content"]
+            }
+            for item in resolved
+        ]
+
+        display_math_content(
+            labels,
+            tooltip_data
+        )
+
+    # Prérequis non référencés : rouge
+    if unresolved:
+
+        for label in unresolved:
+
+            safe_label = html.escape(label)
+
+            st.markdown(
+                f'<span style="color:#d62728;">'
+                f'• {safe_label}'
+                f'</span>',
+                unsafe_allow_html=True
+            )
+
+
+def prerequisite_editor(
+    current_prerequisites,
+    catalog,
+    key_prefix
+):
+    """
+    Interface de sélection des prérequis.
+
+    Les éléments existants sont sélectionnables.
+    Les éléments absents peuvent être saisis librement.
+    """
+
+    st.markdown("**Prérequis de la démonstration**")
+
+    options = list(catalog.keys())
+
+    def format_option(key):
+
+        item = catalog[key]
+
+        type_labels = {
+            "definition": "Définition",
+            "theorem": "Théorème",
+            "property": "Propriété"
+        }
+
+        return (
+            f"{item['title']} "
+            f"({type_labels.get(item['type'], item['type'])})"
+        )
+
+    selected_keys = []
+    missing_labels = []
+
+    for prerequisite in current_prerequisites or []:
+
+        if not isinstance(prerequisite, dict):
+            continue
+
+        item = resolve_prerequisite(prerequisite, catalog)
+
+        if item is not None:
+
+            matching_key = next(
+                (
+                    key
+                    for key, value in catalog.items()
+                    if value["id"] == item["id"]
+                ),
+                None
+            )
+
+            if matching_key and matching_key not in selected_keys:
+                selected_keys.append(matching_key)
+
+        else:
+
+            label = prerequisite.get("label", "")
+
+            if label:
+                missing_labels.append(label)
+
+    selected = st.multiselect(
+        "Sélectionner les définitions, théorèmes ou propriétés existants",
+        options=options,
+        default=selected_keys,
+        format_func=format_option,
+        key=f"{key_prefix}_references"
+    )
+
+    missing_text = st.text_area(
+        "Autres prérequis non référencés (un par ligne)",
+        value="\n".join(missing_labels),
+        key=f"{key_prefix}_missing"
+    )
+
+    prerequisites = []
+
+    # Prérequis référencés
+    for key in selected:
+
+        item = catalog[key]
+
+        prerequisites.append({
+            "label": item["title"],
+            "type": item["type"],
+            "ref_id": item["id"]
+        })
+
+    # Prérequis non référencés
+    for label in missing_text.splitlines():
+
+        label = label.strip()
+
+        if label:
+
+            prerequisites.append({
+                "label": label,
+                "type": None,
+                "ref_id": None
+            })
+
+    return prerequisites
+
+
+# ============================================================
 # FILTRAGE PAR THÈMES
 # ============================================================
 
@@ -115,7 +362,9 @@ def select_theme_filters(items, category):
                 selected_themes.append(theme)
 
     if not selected_themes:
+
         st.warning("Sélectionne au moins un thème.")
+
         return []
 
     selected = set(selected_themes)
@@ -174,9 +423,11 @@ def run_app():
     )
 
     if category == "Définitions":
+
         run_definitions(definitions)
 
     elif category == "Théorèmes":
+
         run_theorems(theorems, definitions)
 
 
@@ -276,9 +527,11 @@ def run_definitions(definitions):
                     selected_themes = parse_comma_separated(themes)
 
                     if not title.strip():
+
                         st.error("Le titre est obligatoire.")
 
                     elif not selected_themes:
+
                         st.error(
                             "Une définition doit avoir au moins un thème."
                         )
@@ -289,14 +542,17 @@ def run_definitions(definitions):
 
                         updated_item["title"] = title.strip()
                         updated_item["themes"] = selected_themes
+
                         updated_item["keywords"] = parse_comma_separated(
                             keywords
                         )
+
                         updated_item["content"] = content
 
                         save_definition(updated_item)
 
                         st.success("Définition enregistrée.")
+
                         st.rerun()
 
             # Suppression
@@ -306,6 +562,7 @@ def run_definitions(definitions):
             ):
 
                 delete_definition(item["id"])
+
                 st.rerun()
 
     # --------------------------------------------------------
@@ -339,9 +596,11 @@ def run_definitions(definitions):
                 selected_themes = parse_comma_separated(themes)
 
                 if not title.strip():
+
                     st.error("Le titre est obligatoire.")
 
                 elif not selected_themes:
+
                     st.error("Il faut associer au moins un thème.")
 
                 else:
@@ -354,6 +613,7 @@ def run_definitions(definitions):
                     )
 
                     st.success("Définition ajoutée.")
+
                     st.rerun()
 
 
@@ -364,6 +624,12 @@ def run_definitions(definitions):
 def run_theorems(theorems, definitions):
 
     st.header("Théorèmes")
+
+    # Catalogue utilisé pour les prérequis des démonstrations.
+    prerequisite_catalog = build_prerequisite_catalog(
+        definitions,
+        theorems
+    )
 
     tab1, tab2 = st.tabs([
         "Consulter / Modifier",
@@ -471,13 +737,22 @@ def run_theorems(theorems, definitions):
                         get_item_themes(selected_demo)
                     )
 
+                    # Prérequis affichés sous les thèmes.
+                    display_prerequisites(
+                        selected_demo.get("prerequisites", []),
+                        prerequisite_catalog
+                    )
+
                     # Contenu de la démonstration.
                     display_math_content(
                         selected_demo.get("content", ""),
                         definitions
                     )
 
-                    # Modification de la démonstration sélectionnée.
+                    # ------------------------------------------------
+                    # MODIFICATION DE LA DÉMONSTRATION
+                    # ------------------------------------------------
+
                     with st.expander(
                         "Modifier cette démonstration",
                         expanded=False
@@ -497,6 +772,12 @@ def run_theorems(theorems, definitions):
                                 value=", ".join(
                                     get_item_themes(selected_demo)
                                 )
+                            )
+
+                            demo_prerequisites = prerequisite_editor(
+                                selected_demo.get("prerequisites", []),
+                                prerequisite_catalog,
+                                f"edit_{selected_demo['id']}"
                             )
 
                             demo_content = st.text_area(
@@ -532,8 +813,14 @@ def run_theorems(theorems, definitions):
                                     updated_demo = selected_demo.copy()
 
                                     updated_demo["title"] = demo_title.strip()
+
                                     updated_demo["themes"] = selected_demo_themes
+
                                     updated_demo["content"] = demo_content
+
+                                    updated_demo["prerequisites"] = (
+                                        demo_prerequisites
+                                    )
 
                                     save_demonstration(updated_demo)
 
@@ -584,6 +871,12 @@ def run_theorems(theorems, definitions):
                         key=f"new_demo_themes_{theorem['id']}"
                     )
 
+                    demo_prerequisites = prerequisite_editor(
+                        [],
+                        prerequisite_catalog,
+                        f"add_{theorem['id']}"
+                    )
+
                     demo_content = st.text_area(
                         "Contenu de la démonstration",
                         height=350,
@@ -618,7 +911,8 @@ def run_theorems(theorems, definitions):
                                 theorem["id"],
                                 demo_title,
                                 selected_demo_themes,
-                                demo_content
+                                demo_content,
+                                demo_prerequisites
                             )
 
                             st.success(
@@ -679,12 +973,15 @@ def run_theorems(theorems, definitions):
                             updated_theorem = theorem.copy()
 
                             updated_theorem["title"] = title.strip()
+
                             updated_theorem["themes"] = selected_themes
+
                             updated_theorem["content"] = content
 
                             save_theorem(updated_theorem)
 
                             st.success("Théorème enregistré.")
+
                             st.rerun()
 
             # =================================================
@@ -697,6 +994,7 @@ def run_theorems(theorems, definitions):
             ):
 
                 delete_theorem(theorem["id"])
+
                 st.rerun()
 
     # --------------------------------------------------------
