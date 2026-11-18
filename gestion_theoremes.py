@@ -48,6 +48,7 @@ def normalize_themes(themes):
     normalized = []
 
     for theme in themes:
+
         if not isinstance(theme, str):
             continue
 
@@ -71,6 +72,7 @@ def normalize_keywords(keywords):
     normalized = []
 
     for keyword in keywords:
+
         if not isinstance(keyword, str):
             continue
 
@@ -78,6 +80,75 @@ def normalize_keywords(keywords):
 
         if keyword and keyword not in normalized:
             normalized.append(keyword)
+
+    return normalized
+
+
+def normalize_prerequisites(prerequisites):
+    """
+    Normalise les prérequis d'une démonstration.
+
+    Chaque prérequis possède la structure suivante :
+
+    {
+        "label": "Cardinal d'une union disjointe",
+        "type": "definition",
+        "ref_id": "..."
+    }
+
+    Pour un prérequis non référencé :
+
+    {
+        "label": "Cardinal d'une union disjointe",
+        "type": None,
+        "ref_id": None
+    }
+
+    Les anciennes données contenant simplement des chaînes
+    sont également acceptées.
+    """
+
+    if not isinstance(prerequisites, list):
+        return []
+
+    normalized = []
+
+    for prerequisite in prerequisites:
+
+        # Compatibilité avec les anciennes chaînes.
+        if isinstance(prerequisite, str):
+
+            prerequisite = {
+                "label": prerequisite,
+                "type": None,
+                "ref_id": None
+            }
+
+        if not isinstance(prerequisite, dict):
+            continue
+
+        label = prerequisite.get("label", "")
+
+        if not isinstance(label, str) or not label.strip():
+            continue
+
+        ref_id = prerequisite.get("ref_id")
+        item_type = prerequisite.get("type")
+
+        # Une référence n'est conservée que si elle possède un ID.
+        if not ref_id:
+            ref_id = None
+            item_type = None
+
+        normalized_item = {
+            "label": label.strip(),
+            "type": item_type,
+            "ref_id": ref_id
+        }
+
+        # Évite les doublons.
+        if normalized_item not in normalized:
+            normalized.append(normalized_item)
 
     return normalized
 
@@ -91,15 +162,18 @@ def load_json_file(file_path):
         return []
 
     try:
+
         with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
 
     except json.JSONDecodeError as error:
+
         raise ValueError(
             f"Le fichier {file_path} contient un JSON invalide."
         ) from error
 
     if not isinstance(data, list):
+
         raise ValueError(
             f"Le fichier {file_path} doit contenir une liste."
         )
@@ -113,6 +187,7 @@ def save_json_file(file_path, data):
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     with open(file_path, "w", encoding="utf-8") as f:
+
         json.dump(
             data,
             f,
@@ -142,6 +217,7 @@ def save_theorem(item):
     Ajoute ou met à jour un théorème.
 
     Structure d'un théorème :
+
     {
         "id": "...",
         "title": "...",
@@ -162,8 +238,15 @@ def save_theorem(item):
         item.get("themes", [])
     )
 
+    demonstration_ids = item.get("demonstration_ids", [])
+
+    if not isinstance(demonstration_ids, list):
+        demonstration_ids = []
+
     item["demonstration_ids"] = list(dict.fromkeys(
-        item.get("demonstration_ids", [])
+        demo_id
+        for demo_id in demonstration_ids
+        if isinstance(demo_id, str) and demo_id
     ))
 
     item["category"] = "Théorèmes"
@@ -185,11 +268,15 @@ def add_theorem(title, themes, content):
     """Crée un nouveau théorème."""
 
     if not isinstance(title, str) or not title.strip():
-        raise ValueError("Le titre du théorème ne peut pas être vide.")
+
+        raise ValueError(
+            "Le titre du théorème ne peut pas être vide."
+        )
 
     selected_themes = normalize_themes(themes)
 
     if not selected_themes:
+
         raise ValueError(
             "Un théorème doit être associé à au moins un thème."
         )
@@ -237,10 +324,14 @@ def delete_theorem(item_id):
 
     demonstrations = load_demonstrations()
 
+    # On supprime les démonstrations associées au théorème.
     updated_demonstrations = [
         demo
         for demo in demonstrations
-        if demo.get("id") not in demonstration_ids
+        if (
+            demo.get("id") not in demonstration_ids
+            and demo.get("theorem_id") != item_id
+        )
     ]
 
     save_all_demonstrations(updated_demonstrations)
@@ -250,6 +341,7 @@ def get_theorem_by_id(item_id):
     """Récupère un théorème à partir de son identifiant."""
 
     for theorem in load_theorems():
+
         if theorem.get("id") == item_id:
             return theorem
 
@@ -265,6 +357,7 @@ def get_available_theorem_themes(theorems=None):
     themes = set()
 
     for theorem in theorems:
+
         themes.update(
             normalize_themes(theorem.get("themes", []))
         )
@@ -281,13 +374,42 @@ def get_available_theorem_themes(theorems=None):
 def load_demonstrations():
     """Charge toutes les démonstrations."""
 
-    return load_json_file(DEMONSTRATIONS_FILE)
+    demonstrations = load_json_file(DEMONSTRATIONS_FILE)
+
+    # Compatibilité avec les anciennes démonstrations.
+    for demo in demonstrations:
+
+        if isinstance(demo, dict):
+
+            demo["prerequisites"] = normalize_prerequisites(
+                demo.get("prerequisites", [])
+            )
+
+    return demonstrations
 
 
 def save_all_demonstrations(demonstrations):
     """Enregistre toutes les démonstrations."""
 
-    save_json_file(DEMONSTRATIONS_FILE, demonstrations)
+    normalized_demonstrations = []
+
+    for demo in demonstrations:
+
+        if not isinstance(demo, dict):
+            continue
+
+        demo = demo.copy()
+
+        demo["prerequisites"] = normalize_prerequisites(
+            demo.get("prerequisites", [])
+        )
+
+        normalized_demonstrations.append(demo)
+
+    save_json_file(
+        DEMONSTRATIONS_FILE,
+        normalized_demonstrations
+    )
 
 
 def save_demonstration(item):
@@ -295,18 +417,28 @@ def save_demonstration(item):
     Ajoute ou met à jour une démonstration.
 
     Structure d'une démonstration :
+
     {
         "id": "...",
         "theorem_id": "...",
         "title": "...",
         "themes": ["Groupes", "Algèbre"],
         "category": "Démonstrations",
-        "content": "..."
+        "content": "...",
+        "prerequisites": [
+            {
+                "label": "...",
+                "type": "definition",
+                "ref_id": "..."
+            }
+        ]
     }
     """
 
     if not isinstance(item, dict):
         raise TypeError("Une démonstration doit être un dictionnaire.")
+
+    item = item.copy()
 
     if not item.get("id"):
         item["id"] = str(uuid.uuid4())
@@ -314,17 +446,37 @@ def save_demonstration(item):
     theorem_id = item.get("theorem_id")
 
     if not theorem_id:
+
         raise ValueError(
             "Une démonstration doit être associée à un théorème."
         )
 
     if get_theorem_by_id(theorem_id) is None:
+
         raise ValueError(
             "Le théorème associé à cette démonstration n'existe pas."
         )
 
+    if not isinstance(item.get("title"), str) or not item["title"].strip():
+
+        raise ValueError(
+            "Le titre de la démonstration ne peut pas être vide."
+        )
+
+    item["title"] = item["title"].strip()
+
     item["themes"] = normalize_themes(
         item.get("themes", [])
+    )
+
+    item["content"] = (
+        item.get("content", "").strip()
+        if isinstance(item.get("content", ""), str)
+        else ""
+    )
+
+    item["prerequisites"] = normalize_prerequisites(
+        item.get("prerequisites", [])
     )
 
     item["category"] = "Démonstrations"
@@ -347,6 +499,7 @@ def save_demonstration(item):
     demonstration_ids = theorem.get("demonstration_ids", [])
 
     if item["id"] not in demonstration_ids:
+
         theorem["demonstration_ids"] = demonstration_ids + [
             item["id"]
         ]
@@ -354,15 +507,23 @@ def save_demonstration(item):
         save_theorem(theorem)
 
 
-def add_demonstration(theorem_id, title, themes, content):
+def add_demonstration(
+    theorem_id,
+    title,
+    themes,
+    content,
+    prerequisites=None
+):
     """Crée une démonstration et l'associe à un théorème."""
 
     if not isinstance(title, str) or not title.strip():
+
         raise ValueError(
             "Le titre de la démonstration ne peut pas être vide."
         )
 
     if get_theorem_by_id(theorem_id) is None:
+
         raise ValueError(
             "Le théorème associé n'existe pas."
         )
@@ -370,6 +531,7 @@ def add_demonstration(theorem_id, title, themes, content):
     selected_themes = normalize_themes(themes)
 
     if not selected_themes:
+
         raise ValueError(
             "Une démonstration doit être associée à au moins un thème."
         )
@@ -380,7 +542,10 @@ def add_demonstration(theorem_id, title, themes, content):
         "title": title.strip(),
         "themes": selected_themes,
         "category": "Démonstrations",
-        "content": content.strip() if isinstance(content, str) else ""
+        "content": content.strip() if isinstance(content, str) else "",
+        "prerequisites": normalize_prerequisites(
+            prerequisites or []
+        )
     }
 
     save_demonstration(item)
@@ -392,6 +557,7 @@ def get_demonstration_by_id(item_id):
     """Récupère une démonstration à partir de son identifiant."""
 
     for demo in load_demonstrations():
+
         if demo.get("id") == item_id:
             return demo
 
@@ -402,6 +568,10 @@ def get_demonstrations_for_theorem(theorem_id):
     """
     Retourne les démonstrations associées à un théorème,
     dans l'ordre de leur identifiant dans le théorème.
+
+    Les démonstrations sont également récupérées par theorem_id
+    pour éviter de perdre une démonstration si le lien dans le
+    fichier des théorèmes est incomplet.
     """
 
     theorem = get_theorem_by_id(theorem_id)
@@ -414,14 +584,27 @@ def get_demonstrations_for_theorem(theorem_id):
     demonstrations_by_id = {
         demo.get("id"): demo
         for demo in demonstrations
+        if demo.get("id")
     }
 
     result = []
 
+    # D'abord, les démonstrations dans l'ordre enregistré.
     for demonstration_id in theorem.get("demonstration_ids", []):
+
         demo = demonstrations_by_id.get(demonstration_id)
 
-        if demo is not None:
+        if demo is not None and demo not in result:
+            result.append(demo)
+
+    # Ensuite, les démonstrations ayant ce theorem_id
+    # mais absentes de demonstration_ids.
+    for demo in demonstrations:
+
+        if (
+            demo.get("theorem_id") == theorem_id
+            and demo not in result
+        ):
             result.append(demo)
 
     return result
@@ -453,6 +636,7 @@ def delete_demonstration(item_id):
     )
 
     if theorem is not None:
+
         theorem["demonstration_ids"] = [
             demo_id
             for demo_id in theorem.get("demonstration_ids", [])
@@ -471,6 +655,7 @@ def get_available_demonstration_themes(demonstrations=None):
     themes = set()
 
     for demo in demonstrations:
+
         themes.update(
             normalize_themes(demo.get("themes", []))
         )
