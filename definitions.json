@@ -18,22 +18,904 @@
             "groupes abéliens",
             "\\G_c"
         ],
-        "content": "Un groupe $(G,\\star)$ est commutatif (abélien) si sa loi est commutative. On note $\\G_c$ l'ensemble des groupes commutatifs.\n\n$$(G,\\star)\\in \\G_c \\ssi \\begin{cases} (G,\\star)\\in \\G \\\\ \\forall x,y\\in \\G, x\\star y= y\\star x \\end{cases}$$"
+        "content": "Un groupe est dit **commutatif**, ou **abélien**, lorsque deux éléments quelconques peuvent être composés dans n'importe quel ordre sans changer le résultat. L'ensemble des groupes commutatifs est noté $\\G_c$.\n\n**Définition symbolique :**\n$$(G,\\star)\\in\\G_c\\ssi (G,\\star)\\in\\G\\ \\land\\ \\forall x,y\\in G,\\ x\\star y=y\\star x.$$"
     },
     {
-        "id": "1",
-        "title": "Définition d'un groupe",
+        "id": "b1cd2224-c61c-4911-8fae-df2ce76f18e6",
+        "title": "Cardinal",
+        "themes": [
+            "Ensemble",
+            "Dénombrement"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "cardinal",
+            "Cardinal"
+        ],
+        "content": "Deux ensembles ont le **même cardinal** lorsqu'il existe une bijection entre eux ; on dit alors qu'ils sont équipotents. Le cardinal mesure ainsi la taille d'un ensemble, sans tenir compte de la nature de ses éléments. On note le cardinal de $E$ par $|E|$ ou $\\operatorname{card}(E)$.\n\nPour tout entier naturel $n$, l'ensemble $\\{1,\\ldots,n\\}$ a pour cardinal $n$ ; pour $n=0$, cet ensemble est vide. Un ensemble est **fini** s'il a le même cardinal qu'un tel ensemble. Il est **dénombrable** s'il a le même cardinal que $\\N$, noté $\\aleph_0$.\n\n**Définition symbolique :**\n$$|E|=|F|\\ssi \\exists f:E\\to F,\\ f\\text{ bijective}.$$\n$$E\\text{ fini}\\ssi \\exists n\\in\\N,\\ |E|=n,\\qquad E\\text{ dénombrable}\\ssi |E|=|\\N|=\\aleph_0.$$"
+    },
+    {
+        "id": "3",
+        "title": "Élément neutre",
         "themes": [
             "Groupes",
             "Algèbre"
         ],
         "category": "Définitions",
         "keywords": [
-            "groupe",
-            "structure de groupe",
-            "\\G"
+            "élément neutre",
+            "neutre",
+            "identité"
         ],
-        "content": "Soit $G$ un ensemble muni d'une loi de composition interne $\\star$. On dit que $(G,\\star)$ est un groupe si la loi est associative, possède un élément neutre et si chaque élément possède un inverse. Je note $\\G$ l'ensemble des groupes.\n\n$$(G,\\star)\\in \\G \\ssi \\begin{cases} \\forall x,y\\in G&,\\ x\\star y\\in G \\\\ \\exists! e\\in G;\\ \\forall x\\in G&,\\ x\\star e=e\\star x=x \\\\ \\forall x\\in G,\\ \\exists y\\in G&;\\ x\\star y=y\\star x=e \\end{cases}$$"
+        "content": "Dans un groupe, l'**élément neutre** est l'élément qui ne change aucun élément lorsqu'on le compose avec lui. Il est unique et se note généralement $e$, $1_G$ ou $0_G$, selon la convention utilisée.\n\n**Définition symbolique :**\n$$\\exists!e\\in G,\\ \\forall x\\in G,\\quad x\\star e=e\\star x=x.$$"
+    },
+    {
+        "id": "4",
+        "title": "Inverse d'un élément",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "inverse",
+            "inverse d'un élément",
+            "symétrique"
+        ],
+        "content": "Dans un groupe, l'**inverse** d'un élément $x$ est l'unique élément qui, composé avec $x$ à gauche ou à droite, donne l'élément neutre. Il se note $x^{-1}$.\n\n**Définition symbolique :**\n$$\\forall x\\in G,\\ \\exists!y\\in G,\\quad x\\star y=y\\star x=e;\\qquad y=x^{-1}.$$"
+    },
+    {
+        "id": "6",
+        "title": "Groupe trivial",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe trivial",
+            "groupe à un élément"
+        ],
+        "content": "Un **groupe trivial** est un groupe qui ne contient qu'un seul élément, nécessairement son élément neutre. On le note généralement $\\{e\\}$.\n\n**Définition symbolique :**\n$$G\\text{ trivial}\\ssi |G|=1\\ssi G=\\{e\\}.$$"
+    },
+    {
+        "id": "9",
+        "title": "Ordre d'un élément",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "ordre d'un élément",
+            "ordre",
+            "élément d'ordre fini"
+        ],
+        "content": "L'**ordre** d'un élément $x$ d'un groupe est le plus petit entier strictement positif $n$ tel que $x^n=e$, lorsqu'un tel entier existe. S'il n'en existe pas, on dit que $x$ est d'ordre infini. On note cet ordre $\\operatorname{ord}(x)$.\n\n**Définition symbolique :**\n$$\\operatorname{ord}(x)=\\min\\{n\\in\\N^*\\mid x^n=e\\},$$\nsi cet ensemble est non vide ; sinon $\\operatorname{ord}(x)=+\\infty$."
+    },
+    {
+        "id": "10",
+        "title": "Groupe cyclique",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe cyclique",
+            "cyclique",
+            "groupe monogène",
+            "engendré par un élément"
+        ],
+        "content": "Un groupe est **cyclique** lorsqu'il existe un élément dont les puissances engendrent tout le groupe. Un tel élément est appelé **générateur** du groupe. On note alors $G=\\langle g\\rangle$.\n\n**Définition symbolique :**\n$$G\\text{ cyclique}\\ssi \\exists g\\in G,\\quad G=\\langle g\\rangle=\\{g^n\\mid n\\in\\Z\\}.$$"
+    },
+    {
+        "id": "13",
+        "title": "Sous-groupe engendré",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe engendré",
+            "groupe engendré",
+            "engendré par une partie"
+        ],
+        "content": "Le **sous-groupe engendré** par une partie $A$ d'un groupe $G$ est le plus petit sous-groupe de $G$ qui contient $A$. On le note $\\langle A\\rangle$.\n\n**Définition symbolique :**\n$$\\langle A\\rangle=\\bigcap_{\\substack{H\\leq G\\\\A\\subseteq H}}H.$$"
+    },
+    {
+        "id": "17",
+        "title": "Centralisateur d'une partie",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "centralisateur",
+            "centralisateur d'une partie",
+            "commuter"
+        ],
+        "content": "Le **centralisateur** d'une partie $A$ dans un groupe $G$ est l'ensemble des éléments de $G$ qui commutent avec chacun des éléments de $A$. On le note $C_G(A)$.\n\n**Définition symbolique :**\n$$C_G(A)=\\{g\\in G\\mid \\forall a\\in A,\\ ga=ag\\}.$$"
+    },
+    {
+        "id": "18",
+        "title": "Normalisateur d'une partie",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "normalisateur",
+            "normalisateur d'une partie"
+        ],
+        "content": "Le **normalisateur** d'une partie $A$ dans un groupe $G$ est l'ensemble des éléments de $G$ dont la conjugaison laisse $A$ invariant. On le note $N_G(A)$ ; c'est un sous-groupe de $G$.\n\n**Définition symbolique :**\n$$N_G(A)=\\{g\\in G\\mid gAg^{-1}=A\\}.$$"
+    },
+    {
+        "id": "19",
+        "title": "Conjugaison d'éléments",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "conjugaison",
+            "éléments conjugués",
+            "conjugué"
+        ],
+        "content": "Deux éléments $x$ et $y$ d'un groupe sont **conjugués** si l'un s'obtient à partir de l'autre par conjugaison par un élément du groupe. Autrement dit, il existe $g\\in G$ tel que $y=gxg^{-1}$. La conjugaison définit une relation d'équivalence sur $G$.\n\n**Définition symbolique :**\n$$x\\sim y\\ssi \\exists g\\in G,\\quad y=gxg^{-1}.$$"
+    },
+    {
+        "id": "20",
+        "title": "Classe de conjugaison",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "classe de conjugaison",
+            "orbite de conjugaison"
+        ],
+        "content": "La **classe de conjugaison** d'un élément $x$ est l'ensemble de tous les éléments qui lui sont conjugués. Elle est aussi l'orbite de $x$ pour l'action de $G$ sur lui-même par conjugaison.\n\n**Définition symbolique :**\n$$\\operatorname{Cl}(x)=\\{gxg^{-1}\\mid g\\in G\\}.$$"
+    },
+    {
+        "id": "21",
+        "title": "Groupe simple",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe simple",
+            "simplicité"
+        ],
+        "content": "Un groupe est **simple** lorsqu'il n'est pas trivial et que ses seuls sous-groupes distingués sont le sous-groupe trivial et le groupe tout entier.\n\n**Définition symbolique :**\n$$G\\text{ simple}\\ssi G\\neq\\{e\\}\\ \\land\\ \\{H\\leq G\\mid H\\trianglelefteq G\\}=\\{\\{e\\},G\\}.$$"
+    },
+    {
+        "id": "22",
+        "title": "Groupe dérivé",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe dérivé",
+            "sous-groupe des commutateurs",
+            "commutateur"
+        ],
+        "content": "Le **groupe dérivé** de $G$ est le sous-groupe engendré par tous les commutateurs de deux éléments de $G$. Il mesure le défaut de commutativité du groupe. On le note $[G,G]$ ou $G'$ ; il est distingué dans $G$.\n\n**Définition symbolique :**\n$$[G,G]=\\langle [x,y]\\mid x,y\\in G\\rangle,\\qquad [x,y]=xyx^{-1}y^{-1}.$$"
+    },
+    {
+        "id": "23",
+        "title": "Commutateur de deux éléments",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "commutateur",
+            "commutateur de deux éléments"
+        ],
+        "content": "Le **commutateur** de deux éléments $x$ et $y$ d'un groupe est l'élément $[x,y]=xyx^{-1}y^{-1}$. Il vaut l'élément neutre exactement lorsque $x$ et $y$ commutent.\n\n**Définition symbolique :**\n$$[x,y]=xyx^{-1}y^{-1},\\qquad [x,y]=e\\ssi xy=yx.$$"
+    },
+    {
+        "id": "24",
+        "title": "Groupe résoluble",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe résoluble",
+            "résolubilité",
+            "suite dérivée"
+        ],
+        "content": "Un groupe est **résoluble** lorsque la suite obtenue en prenant successivement le groupe dérivé finit par atteindre le groupe trivial. Cette suite est appelée suite dérivée.\n\n**Définition symbolique :**\n$$G^{(0)}=G,\\quad G^{(n+1)}=[G^{(n)},G^{(n)}],\\qquad\nG\\text{ résoluble}\\ssi \\exists n\\in\\N,\\ G^{(n)}=\\{e\\}.$$"
+    },
+    {
+        "id": "27",
+        "title": "Groupe symétrique",
+        "themes": [
+            "Groupes",
+            "Permutations"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe symétrique",
+            "groupe symétrique d'ordre n",
+            "S_n"
+        ],
+        "content": "Le **groupe symétrique** d'ordre $n$, noté $\\mathfrak S_n$ ou $\\gsym_n$, est le groupe de toutes les permutations de $\\{1,\\ldots,n\\}$, muni de la composition. Il contient $n!$ éléments.\n\n**Définition symbolique :**\n$$\\gsym_n=\\operatorname{Bij}(\\{1,\\ldots,n\\},\\{1,\\ldots,n\\}),\\qquad |\\gsym_n|=n!.$$"
+    },
+    {
+        "id": "28",
+        "title": "Groupe alterné",
+        "themes": [
+            "Groupes",
+            "Permutations"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe alterné",
+            "permutations paires",
+            "A_n"
+        ],
+        "content": "Le **groupe alterné** $\\mathfrak A_n$ est le sous-groupe du groupe symétrique constitué des permutations paires, c'est-à-dire celles dont la signature vaut $1$.\n\n**Définition symbolique :**\n$$\\mathfrak A_n=\\{\\sigma\\in\\gsym_n\\mid \\varepsilon(\\sigma)=1\\}.$$"
+    },
+    {
+        "id": "29",
+        "title": "Produit direct de groupes",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "produit direct",
+            "produit de groupes",
+            "groupe produit"
+        ],
+        "content": "Le **produit direct** de deux groupes est le produit cartésien de leurs ensembles, muni de la loi qui s'applique séparément sur chaque coordonnée.\n\n**Définition symbolique :**\n$$(G\\times H,\\star)\\quad\\text{avec}\\quad\n(g,h)\\star(g',h')=(gg',hh').$$"
+    },
+    {
+        "id": "30",
+        "title": "Produit direct externe d'une famille de groupes",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "produit direct externe",
+            "produit cartésien de groupes"
+        ],
+        "content": "Le **produit direct externe** d'une famille de groupes est l'ensemble des familles d'éléments ayant une coordonnée dans chaque groupe, muni de la loi définie coordonnée par coordonnée.\n\n**Définition symbolique :**\n$$\\prod_{i\\in I}G_i=\n\\{(g_i)_{i\\in I}\\mid \\forall i\\in I,\\ g_i\\in G_i\\},$$\navec la loi $(g_i)(h_i)=(g_ih_i)$."
+    },
+    {
+        "id": "31",
+        "title": "Somme directe de groupes abéliens",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "somme directe",
+            "somme directe de groupes",
+            "support fini"
+        ],
+        "content": "La **somme directe** d'une famille de groupes abéliens est le sous-groupe de leur produit direct formé des familles dont seul un nombre fini de termes sont différents de l'élément neutre. On la note $\\bigoplus_{i\\in I}G_i$.\n\n**Définition symbolique :**\n$$\\bigoplus_{i\\in I}G_i=\n\\{(g_i)\\in\\prod_{i\\in I}G_i\\mid\n\\{i\\in I\\mid g_i\\neq e_i\\}\\text{ est fini}\\}.$$"
+    },
+    {
+        "id": "32",
+        "title": "Groupe libre",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe libre",
+            "mots réduits",
+            "base libre"
+        ],
+        "content": "Un **groupe libre sur un ensemble** $X$ est un groupe dans lequel les éléments de $X$ jouent le rôle de générateurs sans relations imposées autres que celles nécessaires aux axiomes de groupe. Il est caractérisé par la propriété suivante : toute application de $X$ vers un groupe $G$ se prolonge de manière unique en un morphisme du groupe libre vers $G$.\n\n**Définition symbolique :**\n$$\\forall G\\in\\G,\\ \\forall f:X\\to G,\\ \\exists!\\varphi\\in\\GMorph(F(X),G),\\\n\\forall x\\in X,\\ \\varphi(x)=f(x).$$"
+    },
+    {
+        "id": "33",
+        "title": "Classe à gauche modulo un sous-groupe",
+        "themes": [
+            "Groupes",
+            "Ensembles"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "classe à gauche",
+            "classe modulo",
+            "classe latérale gauche",
+            "aH"
+        ],
+        "content": "Soit $H$ un sous-groupe de $G$. La **classe à gauche** de $a\\in G$ modulo $H$ est l'ensemble obtenu en multipliant $a$ à gauche par tous les éléments de $H$. On la note $aH$.\n\n**Définition symbolique :**\n$$aH=\\{ah\\mid h\\in H\\}.$$"
+    },
+    {
+        "id": "34",
+        "title": "Classe à droite modulo un sous-groupe",
+        "themes": [
+            "Groupes",
+            "Ensembles"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "classe à droite",
+            "classe latérale droite",
+            "Ha"
+        ],
+        "content": "Soit $H$ un sous-groupe de $G$. La **classe à droite** de $a\\in G$ modulo $H$ est l'ensemble obtenu en multipliant tous les éléments de $H$ à droite par $a$. On la note $Ha$.\n\n**Définition symbolique :**\n$$Ha=\\{ha\\mid h\\in H\\}.$$"
+    },
+    {
+        "id": "36",
+        "title": "Groupe quotient",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe quotient",
+            "quotient",
+            "G sur H",
+            "G/H"
+        ],
+        "content": "Lorsque $H$ est un sous-groupe distingué de $G$, l'ensemble des classes modulo $H$ peut être muni d'une loi de groupe induite par celle de $G$. Ce groupe est appelé **groupe quotient** de $G$ par $H$ et se note $G/H$.\n\n**Définition symbolique :**\n$$G/H=\\{gH\\mid g\\in G\\},\\qquad\n(aH)(bH)=(ab)H,\\quad H\\trianglelefteq G.$$"
+    },
+    {
+        "id": "37",
+        "title": "Groupe quotient cyclique",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "quotient cyclique",
+            "groupe cyclique quotient"
+        ],
+        "content": "Un groupe quotient $G/H$ est **cyclique** lorsqu'une seule de ses classes suffit à engendrer toutes les autres par puissances. Il existe alors $g\\in G$ tel que la classe $gH$ engendre $G/H$.\n\n**Définition symbolique :**\n$$G/H\\text{ cyclique}\\ssi \\exists g\\in G,\\quad G/H=\\langle gH\\rangle.$$"
+    },
+    {
+        "id": "38",
+        "title": "Relation de congruence modulo un sous-groupe normal",
+        "themes": [
+            "Groupes",
+            "Relations d'équivalence"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "congruence",
+            "congruence modulo H",
+            "relation modulo un sous-groupe"
+        ],
+        "content": "Soit $H$ un sous-groupe distingué de $G$. Deux éléments de $G$ sont **congrus modulo $H$** lorsque leur quotient $a^{-1}b$ appartient à $H$. Cette relation est une relation d'équivalence compatible avec la loi du groupe ; ses classes sont les classes à gauche modulo $H$.\n\n**Définition symbolique :**\n$$a\\equiv b\\pmod H\\ssi a^{-1}b\\in H,\\qquad H\\trianglelefteq G.$$"
+    },
+    {
+        "id": "39",
+        "title": "Sous-groupe caractéristique",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe caractéristique",
+            "caractéristique",
+            "invariant par automorphisme"
+        ],
+        "content": "Un sous-groupe $H$ de $G$ est **caractéristique** s'il est préservé par tous les automorphismes de $G$. On note parfois $H\\operatorname{char}G$.\n\n**Définition symbolique :**\n$$H\\operatorname{char}G\\ssi H\\leq G\\ \\land\\\n\\forall\\varphi\\in\\operatorname{Aut}(G),\\quad\\varphi(H)=H.$$"
+    },
+    {
+        "id": "40",
+        "title": "Sous-groupe maximal",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe maximal",
+            "maximalité"
+        ],
+        "content": "Un sous-groupe $H$ de $G$ est **maximal** lorsqu'il est strictement inclus dans $G$ et qu'aucun sous-groupe ne se trouve strictement entre $H$ et $G$.\n\n**Définition symbolique :**\n$$H\\text{ maximal dans }G\\ssi H<G\\ \\land\\\n\\neg\\exists K\\leq G,\\ H\\subsetneq K\\subsetneq G.$$"
+    },
+    {
+        "id": "41",
+        "title": "Sous-groupe de Sylow",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe de Sylow",
+            "p-Sylow",
+            "p-groupe"
+        ],
+        "content": "Soit $G$ un groupe fini et $p$ un nombre premier divisant son ordre. Un **sous-groupe de Sylow $p$** est un sous-groupe dont l'ordre est la plus grande puissance de $p$ qui divise $|G|$. Si $|G|=p^n m$ avec $p$ ne divisant pas $m$, son ordre est $p^n$.\n\n**Définition symbolique :**\n$$|G|=p^n m,\\ p\\nmid m,\\qquad\nP\\text{ Sylow }p\\ssi P\\leq G\\ \\land\\ |P|=p^n.$$"
+    },
+    {
+        "id": "42",
+        "title": "p-groupe",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "p-groupe",
+            "groupe de puissance d'un nombre premier"
+        ],
+        "content": "Un **$p$-groupe** est un groupe fini dont l'ordre est une puissance d'un nombre premier $p$.\n\n**Définition symbolique :**\n$$G\\text{ est un }p\\text{-groupe}\\ssi\n\\exists n\\in\\N,\\quad |G|=p^n,\\quad p\\text{ premier}.$$"
+    },
+    {
+        "id": "47",
+        "title": "Monomorphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "monomorphisme",
+            "morphisme injectif"
+        ],
+        "content": "Un **monomorphisme de groupes** est un morphisme injectif : deux éléments qui ont la même image sont nécessairement égaux.\n\n**Définition symbolique :**\n$$f\\in\\GMorph(G,H)\\text{ monomorphisme}\\ssi\n\\forall x,y\\in G,\\ f(x)=f(y)\\Rightarrow x=y.$$\n\n**Définitions équivalente_1 :**\n$$f\\text{ monomorphisme}\\ssi\\ker(f)=\\{e_G\\}.$$"
+    },
+    {
+        "id": "48",
+        "title": "Épimorphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "épimorphisme",
+            "morphisme surjectif"
+        ],
+        "content": "Un **épimorphisme de groupes** est un morphisme surjectif : chaque élément du groupe d'arrivée est l'image d'au moins un élément du groupe de départ.\n\n**Définition symbolique :**\n$$f\\in\\GMorph(G,H)\\text{ épimorphisme}\\ssi\n\\forall h\\in H,\\ \\exists g\\in G,\\ f(g)=h.$$"
+    },
+    {
+        "id": "50",
+        "title": "Image d'un morphisme",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "image",
+            "image d'un morphisme",
+            "Im"
+        ],
+        "content": "L'**image** d'un morphisme est l'ensemble des éléments du groupe d'arrivée qui sont effectivement atteints par ce morphisme. On la note $\\operatorname{Im}(f)$ ; c'est un sous-groupe du groupe d'arrivée.\n\n**Définition symbolique :**\n$$\\operatorname{Im}(f)=\\{f(g)\\mid g\\in G\\}\\subseteq H.$$"
+    },
+    {
+        "id": "51",
+        "title": "Image réciproque d'un sous-groupe",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "image réciproque",
+            "préimage",
+            "antécédents d'un sous-groupe"
+        ],
+        "content": "L'**image réciproque** d'une partie $K$ par une application $f$ est l'ensemble des éléments du domaine dont l'image appartient à $K$. Si $f$ est un morphisme de groupes et $K$ un sous-groupe, cette image réciproque est un sous-groupe.\n\n**Définition symbolique :**\n$$f^{-1}(K)=\\{g\\in G\\mid f(g)\\in K\\}.$$"
+    },
+    {
+        "id": "52",
+        "title": "Restriction d'un morphisme",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "restriction",
+            "restriction d'un morphisme"
+        ],
+        "content": "La **restriction** d'un morphisme $f$ à un sous-groupe $K$ de son domaine consiste à considérer la même application, mais uniquement sur les éléments de $K$. Elle se note $f_{\\mid K}$ et reste un morphisme.\n\n**Définition symbolique :**\n$$f_{\\mid K}:K\\to H,\\qquad k\\mapsto f(k),\\quad K\\leq G.$$"
+    },
+    {
+        "id": "53",
+        "title": "Morphisme quotient canonique",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "projection canonique",
+            "morphisme quotient",
+            "surjection canonique"
+        ],
+        "content": "Lorsque $H$ est un sous-groupe distingué de $G$, la **projection canonique** associe à chaque élément $g$ sa classe modulo $H$. C'est un morphisme surjectif de $G$ vers $G/H$, dont le noyau est $H$.\n\n**Définition symbolique :**\n$$\\pi:G\\to G/H,\\qquad g\\mapsto gH,\\qquad\n\\ker(\\pi)=H,\\quad\\operatorname{Im}(\\pi)=G/H.$$"
+    },
+    {
+        "id": "55",
+        "title": "Groupe des automorphismes intérieurs",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "automorphisme intérieur",
+            "groupe des automorphismes intérieurs",
+            "Int G"
+        ],
+        "content": "À chaque élément $g$ d'un groupe $G$, on associe l'application qui conjugue chaque élément $x$ en $gxg^{-1}$. Cette application est un automorphisme, appelé **automorphisme intérieur**. L'ensemble de ces automorphismes forme le groupe $\\operatorname{Int}(G)$.\n\n**Définition symbolique :**\n$$\\operatorname{Int}(g):G\\to G,\\quad x\\mapsto gxg^{-1},\\qquad\n\\operatorname{Int}(G)=\\{\\operatorname{Int}(g)\\mid g\\in G\\}.$$"
+    },
+    {
+        "id": "57",
+        "title": "Action fidèle",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action fidèle",
+            "fidélité"
+        ],
+        "content": "Une action de $G$ sur $X$ est **fidèle** si seul l'élément neutre de $G$ fixe tous les éléments de $X$. Autrement dit, deux éléments distincts de $G$ induisent des permutations distinctes de $X$.\n\n**Définition symbolique :**\n$$\\bigcap_{x\\in X}\\operatorname{Stab}_G(x)=\\{e\\}.$$\n\n**Définitions équivalente_1 :**\nLe morphisme associé à l'action, de $G$ vers le groupe des permutations de $X$, est injectif."
+    },
+    {
+        "id": "58",
+        "title": "Action transitive",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action transitive",
+            "transitivité"
+        ],
+        "content": "Une action de $G$ sur $X$ est **transitive** si l'on peut envoyer n'importe quel élément de $X$ sur n'importe quel autre au moyen de l'action d'un élément de $G$. Cela signifie que tous les éléments de $X$ appartiennent à une même orbite.\n\n**Définition symbolique :**\n$$\\forall x,y\\in X,\\ \\exists g\\in G,\\quad g\\cdot x=y.$$"
+    },
+    {
+        "id": "59",
+        "title": "Action libre",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action libre",
+            "liberté d'une action"
+        ],
+        "content": "Une action de $G$ sur $X$ est **libre** si aucun élément autre que l'élément neutre ne fixe un point de $X$.\n\n**Définition symbolique :**\n$$\\forall x\\in X,\\quad \\operatorname{Stab}_G(x)=\\{e\\}.$$\n**Définitions équivalente_1 :**\n$$\\forall g\\in G,\\ \\forall x\\in X,\\quad\ng\\cdot x=x\\Rightarrow g=e.$$"
+    },
+    {
+        "id": "63",
+        "title": "Ensemble des points fixes",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "ensemble des points fixes",
+            "X puissance G",
+            "invariants"
+        ],
+        "content": "L'**ensemble des points fixes** d'une action de $G$ sur $X$ est l'ensemble des éléments de $X$ qui restent inchangés sous l'action de tous les éléments de $G$. On le note $X^G$.\n\n**Définition symbolique :**\n$$X^G=\\{x\\in X\\mid \\forall g\\in G,\\ g\\cdot x=x\\}.$$"
+    },
+    {
+        "id": "64",
+        "title": "Action par translation à gauche",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "translation à gauche",
+            "action régulière à gauche"
+        ],
+        "content": "Un groupe $G$ agit sur lui-même par **translation à gauche** lorsque chaque élément $g$ envoie $x$ sur le produit $gx$. Cette action est libre et transitive ; on l'appelle aussi action régulière à gauche.\n\n**Définition symbolique :**\n$$G\\times G\\to G,\\qquad(g,x)\\mapsto gx.$$"
+    },
+    {
+        "id": "65",
+        "title": "Action par conjugaison",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action par conjugaison",
+            "conjugaison",
+            "action intérieure"
+        ],
+        "content": "Un groupe agit sur lui-même **par conjugaison** lorsque chaque élément $g$ transforme $x$ en $gxg^{-1}$. Les orbites de cette action sont les classes de conjugaison.\n\n**Définition symbolique :**\n$$G\\times G\\to G,\\qquad(g,x)\\mapsto gxg^{-1}.$$"
+    },
+    {
+        "id": "66",
+        "title": "Action par multiplication à gauche sur les classes",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action sur les classes",
+            "action sur G sur H",
+            "action quotient"
+        ],
+        "content": "Si $H$ est un sous-groupe de $G$, le groupe $G$ agit sur l'ensemble des classes à gauche $G/H$ en multipliant chaque classe à gauche par un élément de $G$. Cette action est bien définie même si $H$ n'est pas distingué.\n\n**Définition symbolique :**\n$$G\\times G/H\\to G/H,\\qquad(g,aH)\\mapsto (ga)H.$$"
+    },
+    {
+        "id": "44",
+        "title": "Endomorphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "endomorphisme",
+            "endomorphisme de groupes",
+            "endomorphisme d'un groupe"
+        ],
+        "content": "Un **endomorphisme** d'un groupe est un morphisme de ce groupe dans lui-même. L'ensemble des endomorphismes de $G$ est noté $\\GMorph(G)$ selon la convention adoptée ici.\n\n**Définition symbolique :**\n$$\\operatorname{End}(G)=\\{f:G\\to G\\mid\n\\forall x,y\\in G,\\ f(xy)=f(x)f(y)\\}.$$"
+    },
+    {
+        "id": "54",
+        "title": "Groupe des homomorphismes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe des morphismes",
+            "Hom",
+            "homomorphismes"
+        ],
+        "content": "Lorsque le groupe d'arrivée $A$ est abélien, l'ensemble des morphismes de $G$ vers $A$ peut être muni d'une loi définie point par point : la somme de deux morphismes associe à chaque élément la somme de leurs images. Cet ensemble forme alors un groupe abélien, noté $\\operatorname{Hom}(G,A)$.\n\n**Définition symbolique :**\n$$\\operatorname{Hom}(G,A)=\\GMorph(G,A),\\qquad\n(f+g)(x)=f(x)+g(x),\\quad A\\in\\G_c.$$"
+    },
+    {
+        "id": "43",
+        "title": "Morphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "morphisme de groupes",
+            "homomorphisme",
+            "\\GMorph"
+        ],
+        "content": "Un **morphisme de groupes** est une application entre deux groupes qui respecte leurs lois : composer deux éléments puis appliquer le morphisme revient au même que d'appliquer le morphisme à chacun puis composer leurs images. On note l'ensemble de ces morphismes $\\GMorph(G,H)$.\n\n**Définition symbolique :**\n$$\\GMorph(G,H)=\\{f:G\\to H\\mid\n\\forall x,y\\in G,\\ f(xy)=f(x)f(y)\\}.$$"
+    },
+    {
+        "id": "46",
+        "title": "Automorphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "automorphisme",
+            "automorphisme de groupes",
+            "\\AutGMorph"
+        ],
+        "content": "Un **automorphisme** d'un groupe est un isomorphisme de ce groupe sur lui-même. Les automorphismes de $G$, munis de la composition, forment un groupe noté $\\operatorname{Aut}(G)$.\n\n**Définition symbolique :**\n$$\\operatorname{Aut}(G)=\\{f\\in\\GMorph(G,G)\\mid f\\text{ bijective}\\}.$$"
+    },
+    {
+        "id": "49",
+        "title": "Noyau d'un morphisme",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "noyau",
+            "noyau d'un morphisme",
+            "kernel",
+            "ker",
+            "\\ker"
+        ],
+        "content": "Le **noyau** d'un morphisme est l'ensemble des éléments du groupe de départ qui sont envoyés sur l'élément neutre du groupe d'arrivée. On le note $\\ker(f)$ ; c'est un sous-groupe distingué du groupe de départ.\n\n**Définition symbolique :**\n$$\\ker(f)=\\{g\\in G\\mid f(g)=e_H\\}.$$"
+    },
+    {
+        "id": "45",
+        "title": "Isomorphisme de groupes",
+        "themes": [
+            "Groupes",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "isomorphisme",
+            "isomorphisme de groupes",
+            "groupes isomorphes",
+            "\\isoGMorph"
+        ],
+        "content": "Un **isomorphisme** entre deux groupes est un morphisme bijectif. Deux groupes reliés par un isomorphisme sont dits isomorphes et notés $G\\simeq H$. L'ensemble des isomorphismes de $G$ vers $H$ est noté $\\isoGMorph(G,H)$.\n\n**Définition symbolique :**\n$$\\isoGMorph(G,H)=\\{f\\in\\GMorph(G,H)\\mid f\\text{ bijective}\\},\\qquad G\\simeq H\\ssi\\isoGMorph(G,H)\\neq\\emptyset.$$"
+    },
+    {
+        "id": "60",
+        "title": "Orbite d'un élément",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "orbite",
+            "orbite d'un élément",
+            "Gx"
+        ],
+        "content": "Soit $G$ agissant sur $X$. L'**orbite** d'un élément $x$ est l'ensemble des éléments de $X$ que l'action permet d'atteindre à partir de $x$. On la note $\\operatorname{Orb}_G(x)$ ou $G\\cdot x$. Si l'action est précisée par $\\omega$, on peut écrire $\\operatorname{Orb}_{\\omega}(x)$.\n\n**Définition symbolique :**\n$$\\operatorname{Orb}_G(x)=G\\cdot x=\\{g\\cdot x\\mid g\\in G\\}.$$"
+    },
+    {
+        "id": "56",
+        "title": "Action de groupe",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "action de groupe",
+            "action",
+            "opération de groupe",
+            "actions"
+        ],
+        "content": "Une **action de groupe** de $G$ sur un ensemble $X$ est une manière de faire agir chaque élément de $G$ sur chaque élément de $X$, de sorte que l'élément neutre ne change rien et que l'action d'un produit corresponde à l'application successive des deux actions. Elle peut aussi être décrite par un morphisme de $G$ vers le groupe des permutations de $X$.\n\n**Définition symbolique :**\nUne application $\\alpha:G\\times X\\to X$, $(g,x)\\mapsto g\\cdot x$, est une action si\n$$\\forall x\\in X,\\ e\\cdot x=x,\\qquad\n\\forall g,h\\in G,\\ \\forall x\\in X,\\ (gh)\\cdot x=g\\cdot(h\\cdot x).$$\n\n**Définitions équivalente_1 :**\n$$\\omega:G\\to\\gsym(X),\\quad\n\\omega(gh)=\\omega(g)\\circ\\omega(h),\\quad \\omega(e)=\\operatorname{id}_X.$$"
+    },
+    {
+        "id": "61",
+        "title": "Stabilisateur d'un élément",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "stabilisateur",
+            "fixateur",
+            "Stab"
+        ],
+        "content": "Le **stabilisateur** d'un élément $x$ sous l'action de $G$ est l'ensemble des éléments de $G$ qui laissent $x$ inchangé. C'est un sous-groupe de $G$. On le note $\\operatorname{Stab}_G(x)$ ou, si l'action est précisée, $\\operatorname{Stab}_{\\omega}(x)$.\n\n**Définition symbolique :**\n$$\\operatorname{Stab}_G(x)=\\{g\\in G\\mid g\\cdot x=x\\}.$$"
+    },
+    {
+        "id": "62",
+        "title": "Point fixe d'une action",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "point fixe",
+            "élément fixe",
+            "fixe par l'action"
+        ],
+        "content": "Un **point fixe** d'une action de $G$ sur $X$ est un élément de $X$ qui est laissé inchangé par tous les éléments de $G$.\n\n**Définition symbolique :**\n$$x\\text{ est fixe}\\ssi \\forall g\\in G,\\quad g\\cdot x=x.$$\n\n**Définitions équivalente_1 :**\n$$x\\in X^G.$$"
+    },
+    {
+        "id": "26",
+        "title": "Groupe de permutations",
+        "themes": [
+            "Groupes",
+            "Permutations"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe de permutations",
+            "permutations",
+            "bijections",
+            "\\gsym"
+        ],
+        "content": "Le **groupe des permutations** d'un ensemble $X$ est l'ensemble de toutes les bijections de $X$ dans lui-même, muni de la composition. On le note $\\mathfrak S(X)$ ou $\\gsym(X)$.\n\n**Définition symbolique :**\n$$\\gsym(X)=\\operatorname{Bij}(X,X).$$"
+    },
+    {
+        "id": "50e8d244-5a87-485c-b24c-a4aed8eaace1",
+        "title": "Signature",
+        "themes": [
+            "Groupes",
+            "Permutations"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "signature",
+            "Signature"
+        ],
+        "content": "La **signature** est un morphisme de groupes qui associe à chaque permutation sa parité, sous la forme d'un élément de $\\{ -1,1\\}$ (ou de $\\C^*$). Pour une permutation de $\\{1,\\ldots,n\\}$, elle peut aussi se calculer à l'aide du produit des rapports des différences de ses valeurs.\n\n**Définition symbolique :**\n$$\\varepsilon:\\gsym_n\\to\\{ -1,1\\},\\qquad\n\\varepsilon\\in\\GMorph(\\gsym_n,(\\{ -1,1\\},\\times)).$$\n\n**Définitions équivalente_1 :**\n$$\\forall\\sigma\\in\\gsym_n,\\quad\n\\varepsilon(\\sigma)=\n\\prod_{1\\leq i<j\\leq n}\n\\frac{\\sigma(j)-\\sigma(i)}{j-i}.$$"
+    },
+    {
+        "id": "25",
+        "title": "Groupe nilpotent",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe nilpotent",
+            "suite centrale"
+        ],
+        "content": "Un groupe est **nilpotent** si sa suite centrale ascendante atteint le groupe tout entier après un nombre fini d'étapes. De manière équivalente, sa suite centrale descendante atteint le groupe trivial en un nombre fini d'étapes.\n\n**Définition symbolique :**\nSuite centrale ascendante :\n$$Z_0(G)=\\{e\\},\\quad Z_{n+1}(G)/Z_n(G)=Z(G/Z_n(G)),\\qquad\nG\\text{ nilpotent}\\ssi\\exists d\\in\\N,\\ Z_d(G)=G.$$\n\n**Définitions équivalente_1 :**\nSuite centrale descendante :\n$$\\gamma_1(G)=G,\\quad\\gamma_{n+1}(G)=[G,\\gamma_n(G)],\\qquad\nG\\text{ nilpotent}\\ssi\\exists d\\in\\N,\\ \\gamma_d(G)=\\{e\\}.$$"
+    },
+    {
+        "id": "b1aa56c0-9cba-44de-8723-3984541d41ae",
+        "title": "Définition application et fonction",
+        "themes": [
+            "Ensemble",
+            "Applications"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "application",
+            "Application",
+            "Applications",
+            "applications",
+            "fonction",
+            "Fonction",
+            "fonctions",
+            "Fonctions"
+        ],
+        "content": "Une **application** de $E$ vers $F$ associe à chaque élément de $E$ un unique élément de $F$. On la note $f:E\\to F$, et l'ensemble des applications de $E$ vers $F$ se note $F^E$. Une fonction partielle peut, quant à elle, ne pas être définie pour certains éléments de $E$.\n\n**Définition symbolique :**\n$$f:E\\to F\\ssi \\forall x\\in E,\\ \\exists!y\\in F,\\quad f(x)=y.$$\n\n**Définitions équivalente_1 :**\nUne application est le graphe d'une relation $R\\subseteq E\\times F$ tel que\n$$\\forall x\\in E,\\ \\exists!y\\in F,\\quad (x,y)\\in R.$$"
+    },
+    {
+        "id": "35",
+        "title": "Indice d'un sous-groupe",
+        "themes": [
+            "Groupes",
+            "Dénombrement"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "indice",
+            "indice d'un sous-groupe",
+            "[G:H]",
+            "nombre de classes"
+        ],
+        "content": "L'**indice** d'un sous-groupe $H$ dans un groupe $G$ est le nombre de classes à gauche de $H$ dans $G$. Il est noté $[G:H]$ et est également égal au nombre de classes à droite.\n\n**Définition symbolique :**\n$$[G:H]=|G/H|,$$\noù $G/H$ désigne ici l'ensemble des classes à gauche, que $H$ soit distingué ou non."
+    },
+    {
+        "id": "7",
+        "title": "Ordre d'un Groupe",
+        "themes": [
+            "Groupes",
+            "Dénombrement",
+            "Groupes fini"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe fini",
+            "finitude",
+            "cardinal d'un groupe",
+            "ordre d'un groupe"
+        ],
+        "content": "L'**ordre** d'un groupe est le cardinal de son ensemble sous-jacent. On le note $|G|$. Un groupe est dit **fini** lorsque cet ordre est un entier naturel.\n\n**Définition symbolique :**\n$$|G|=\\operatorname{card}(G),\\qquad\nG\\text{ fini}\\ssi |G|\\in\\N.$$"
     },
     {
         "id": "c1bb1f35-9737-4c47-a95a-8fe0ea8443d6",
@@ -41,7 +923,8 @@
         "themes": [
             "Espace vectoriel",
             "Algèbre",
-            "Analyse"
+            "Analyse",
+            "Corps"
         ],
         "category": "Définitions",
         "keywords": [
@@ -51,6 +934,118 @@
             "espaces vectoriels",
             "Espaces vectoriels"
         ],
-        "content": "$(E,\\oplus,\\cdot)$ est un K espace vectoriel (abbrégé en K ev) avec $(K,+,\\times)$ un corps, si $(E,\\oplus)$ groupe commutatif, et si $\\cdot$ distributive à gauche pour $\\oplus$ à droite pour $+$, associative mixte pour $\\times$, de neutre à gauche le neutre multiplicatif de K. \n$$(E,\\oplus, \\cdot) (K,+,\\times) ev \\ssi \\exists 0_E,\\forall u,v,w \\in E,\\forall \\lambda,\\mu\\in K, \\begin{cases} u\\oplus(v\\oplus w)=(u\\oplus v)\\oplus w\\in E \\\\ u\\oplus 0_E= u\\\\ \\exists u^{-1}\\in E; u\\oplus u^{-1}=0_E\\\\ u\\oplus v= v\\oplus u\\\\  \\lambda\\cdot (u\\oplus v)= \\lambda\\cdot u \\oplus \\lambda \\cdot v\\in E \\\\ (\\lambda+\\mu)\\cdot u= \\lambda\\cdot u\\oplus \\mu \\cdot u\\in E\\\\ (\\lambda\\times \\mu)\\cdot u = \\lambda \\cdot (\\mu \\cdot u) \\\\ 1_K \\cdot u= u \\end{cases}$$\n\nEn pratique, on note généralement les additions par le même symbole et on omet $\\cdot$. \nA noté qu'un espace vectoriel est un module sur un corps."
+        "content": "Un **espace vectoriel sur un corps** $K$, ou **$K$-espace vectoriel**, est un groupe abélien $(E,\\oplus)$ muni d'une multiplication par les scalaires de $K$. Cette multiplication est compatible avec les deux lois : elle est distributive par rapport à l'addition des vecteurs et à celle des scalaires, associative avec la multiplication de $K$, et le scalaire $1_K$ agit comme l'identité.\n\n**Définition symbolique :**\n$(E,\\oplus,\\cdot)$ est un $K$-espace vectoriel si $(E,\\oplus)\\in\\G_c$ et\n$$\\begin{cases}\n\\forall \\lambda\\in K,\\ \\forall u,v\\in E,\\quad \\lambda\\cdot(u\\oplus v)=(\\lambda\\cdot u)\\oplus(\\lambda\\cdot v),\\\\\n\\forall \\lambda,\\mu\\in K,\\ \\forall u\\in E,\\quad (\\lambda+\\mu)\\cdot u=(\\lambda\\cdot u)\\oplus(\\mu\\cdot u),\\\\\n\\forall \\lambda,\\mu\\in K,\\ \\forall u\\in E,\\quad (\\lambda\\mu)\\cdot u=\\lambda\\cdot(\\mu\\cdot u),\\\\\n\\forall u\\in E,\\quad 1_K\\cdot u=u.\n\\end{cases}$$\n\n**Définitions équivalente_1 :**\nUn espace vectoriel sur $K$ est un module sur l'anneau $K$, lorsque $K$ est considéré comme un anneau."
+    },
+    {
+        "id": "5",
+        "title": "Puissance d'un élément",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "puissance",
+            "puissance entière",
+            "ordre d'un élément"
+        ],
+        "content": "Dans un groupe, les **puissances entières** d'un élément $x$ sont les produits répétés de $x$ lorsque l'exposant est positif, de son inverse lorsque l'exposant est négatif, et l'élément neutre lorsque l'exposant est nul.\n\n**Définition symbolique :**\n$$\\forall n\\in\\Z,\\quad x^n=\\begin{cases}e&n=0,\\\\\n\\underbrace{x\\star\\cdots\\star x}_{n\\text{ facteurs}}&n>0,\\\\\n(x^{-1})^{n}&n<0.\n\\end{cases}$$"
+    },
+    {
+        "id": "11",
+        "title": "Générateur d'un groupe",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "générateur",
+            "générateurs",
+            "système générateur"
+        ],
+        "content": "Un élément $g$ est un **générateur** d'un groupe s'il suffit de prendre ses puissances pour obtenir tous les éléments du groupe. Plus généralement, une partie $A$ est génératrice si le sous-groupe qu'elle engendre est le groupe tout entier. On note le groupe généré par g : $\\langle g \\rangle$\n\n**Définition symbolique :**\n$$g\\text{ générateur de }G\\ssi G=\\langle g\\rangle=\\{g^n; n\\in \\Z\\}.$$\n$$A\\text{ génératrice de }G\\ssi G=\\langle A\\rangle=\\{a^{n_0}_0 a^{n_1}_1...a^{n_m}_m; m\\in \\N, (n_i)_{i\\le m}\\in \\Z^{m+1}, (a_i)_{i\\le m}\\in A^{m+1}\\}.$$"
+    },
+    {
+        "id": "definition-groupe",
+        "title": "Groupe",
+        "themes": [
+            "Algèbre",
+            "Groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "groupe",
+            "\\G",
+            "groupes",
+            "Groupe",
+            "Groupes"
+        ],
+        "content": "Un groupe est un ensemble non vide G muni d'une loi de composition interne, c'est-à-dire une opération qui associe à chaque paire d'éléments de G un unique élément de G.\n\nCette loi doit satisfaire trois propriétés :\n\n1. **Associativité :** l'ordre dans lequel on effectue les opérations ne change pas le résultat. Autrement dit, pour tous a, b, c ∈ G, on a $(a \\star b) \\star c = a \\star (b \\star c)$.\n2. **Élément neutre :** il existe un élément e ∈ G qui ne modifie aucun élément lorsqu'on lui applique la loi, à gauche comme à droite.\n3. **Inverse :** chaque élément de G possède un inverse dans G, c'est-à-dire un élément qui, composé avec lui, donne l'élément neutre.\n\nOn note généralement $(G, \\star)$ le groupe, ou simplement G lorsque la loi est connue ou évidente.\n\nJe note $\\G$ l'ensemble des groupes.\n\n**Définition symbolique :**\n\n\\[\n(G,\\star)\\in\\G\\iff\n\\begin{cases}\nG\\neq\\varnothing,\\\\\n\\forall(a,b)\\in G^2,\\ a\\star b\\in G,\\\\\n\\forall(a,b,c)\\in G^3,\\ (a\\star b)\\star c=a\\star (b\\star c),\\\\\n\\exists e\\in G,\\ \\forall a\\in G,\\ e\\star a=a\\star e=a,\\\\\n\\forall a\\in G,\\ \\exists b\\in G,\\ a\\star b=b\\star a=e.\n\\end{cases}\n\\]\n\n**Définitions équivalente_1 :**\n\nUn groupe est un magma associatif, possédant un élément neutre, et dans lequel tout élément admet un inverse à droite et à gauche.\n\n**Définitions équivalente_2 :**\n\nUn groupe est un monoïde dans lequel tout élément est inversible."
+    },
+    {
+        "id": "12",
+        "title": "Sous-groupe",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe",
+            "sous-structure",
+            "inclusion"
+        ],
+        "content": "Un **sous-groupe** d'un groupe $(G,\\star)$ est une partie de $G$ qui est elle-même un groupe pour la loi héritée de $G$. On note $H\\leq G$.\n\n**Définition symbolique :**\n$$H\\leq G\\ssi H\\subseteq G\\ \\land\\ (H,\\star_{\\mid H\\times H})\\in\\G.$$"
+    },
+    {
+        "id": "14",
+        "title": "Sous-groupe propre",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe propre",
+            "sous-groupe strict",
+            "sous groupe propre",
+            "sous groupe strict"
+        ],
+        "content": "Un **sous-groupe propre** de $G$ est un sous-groupe qui est différent de $G$ lui-même. On note parfois $H < G$.\n\n**Définition symbolique :**\n$$H < G\\ssi H\\leq G\\ \\land\\ H\\neq G.$$"
+    },
+    {
+        "id": "15",
+        "title": "Sous-groupe distingué ou normal",
+        "themes": [
+            "Groupes",
+            "Algèbre"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "sous-groupe distingué",
+            "sous-groupe normal",
+            "normalité",
+            "groupe distingué",
+            "groupe normal"
+        ],
+        "content": "Un sous-groupe $H$ de $G$ est **distingué**, ou **normal**, lorsque le conjuguer par n'importe quel élément de $G$ ne change pas $H$. On note $H\\trianglelefteq G$.\n\n**Définition symbolique :**\n$$H\\trianglelefteq G\\ssi H\\leq G\\ \\land\\ \\forall g\\in G,\\quad gHg^{-1}=H.$$ \n\n**Définitions équivalente_1 :**\n$$H\\trianglelefteq G\\ssi \\forall g\\in G,\\ \\forall h\\in H,\\quad ghg^{-1}\\in H.$$"
+    },
+    {
+        "id": "16",
+        "title": "Centre d'un groupe",
+        "themes": [
+            "Groupes",
+            "Algèbre",
+            "Actions de groupes"
+        ],
+        "category": "Définitions",
+        "keywords": [
+            "centre",
+            "centre d'un groupe",
+            "éléments centraux",
+            "Z de G"
+        ],
+        "content": "Le **centre** d'un groupe $G$ est l'ensemble des éléments de $G$ qui commutent avec tous les éléments de $G$. On le note $Z(G)$ ; c'est un sous-groupe distingué de $G$.\n\n**Définition symbolique :**\n$$Z(G)=\\{z\\in G\\mid \\forall g\\in G,\\ zg=gz\\}.$$\n\n**Définitions équivalente_1 :**\nPour l'action de conjugaison $\\omega_c: G\\rightarrow Aut(G)$ : \n$$Z(G)=\\ker(\\omega_c)$$"
     }
 ]
