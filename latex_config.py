@@ -4,6 +4,7 @@ LATEX_MACROS = {
     "C": [r"\mathbb{C}", 0],
     "N": [r"\mathbb{N}", 0],
     "A": [r"\mathbb{A}", 0],
+    "eps": [r"\varepsilon", 0],
 
     "E": [r"\mathbb{E}", 0],
     "Prob": [r"\mathbb{P}", 0],
@@ -20,4 +21,15 @@ LATEX_MACROS = {
     "rouge": [r"{\color{red}#1}", 1],
     "orange": [r"{\color{orange}#1}", 1],
     "gras": [r"{\textbf{#1}}", 1],
-}
+
+    "uni":[r"\underset{#1}{\bigcup}",1],
+    "inter":[r"\underset{#1}{\bigcap}",1],
+    "Sum":[r"\underset{#1}{\sum}",1],
+    "Prod":[r"\underset{#1}{\Pi}",1],
+
+    "entier": [r"\mathopen{⟦}#1, #2\mathclose{⟧}", 2],
+    "GMorph": [r"\G Morph",0],
+    "isoGMorph": [r"iso\G Morph",0],
+    "AutGMorph": [r"Aut\G Morph",0],
+
+    }
