@@ -12,5 +12,354 @@
             "demo-11",
             "demo-12"
         ]
+    },
+    {
+        "id": "theoreme-10",
+        "title": "Le centre est un sous-groupe distingué",
+        "themes": [
+            "Groupes",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Pour tout groupe $G$, son centre\n\n$$Z(G)=\\{z\\in G\\mid \\forall g\\in G,\\ zg=gz\\}$$\n\nest un sous-groupe distingué de $G$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-7",
+        "title": "Intersection de sous-groupes",
+        "themes": [
+            "Groupes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe et $(H_i)_{i\\in I}$ une famille de sous-groupes de $G$. Alors leur intersection\n\n$$\\bigcap_{i\\in I}H_i$$\n\nest un sous-groupe de $G$, dès lors que $I$ est non vide.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-9",
+        "title": "Critère de normalité",
+        "themes": [
+            "Groupes",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Soient $G$ un groupe et $H\\leq G$. Les propriétés suivantes sont équivalentes :\n\n1. $H$ est distingué dans $G$ noté $H \\lhd G$ ;\n2. $\\forall g\\in G$, $gHg^{-1}=H$ ;\n3. $\\forall g\\in G$, $gH=Hg$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-8",
+        "title": "Sous-groupe engendré par une partie",
+        "themes": [
+            "Groupes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe et $A\\subseteq G$. Le sous-groupe engendré par $A$ est l'intersection de tous les sous-groupes de $G$ contenant $A$ :\n\n$$\\langle A\\rangle=\\bigcap_{\\substack{H\\leq G\\\\A\\subseteq H}}H.$$\n\nIl s'agit du plus petit sous-groupe de $G$ contenant $A$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-6",
+        "title": "Critère de sous-groupe",
+        "themes": [
+            "Groupes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $(G,\\times)$ un groupe et $H\\subseteq G$. On note $(H,\\times)\\le (G,\\times)$ pour $(H,\\times)$ sous groupe de $(G,\\times)$\n\n$$H\\leq G\\iff H\\neq\\varnothing\\ \\text{ et }\\ \\forall x,y\\in H,\\ xy^{-1}\\in H.$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-11",
+        "title": "Structure des sous-groupes d'un groupe cyclique",
+        "themes": [
+            "Groupes",
+            "Groupes cycliques"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout sous-groupe d'un groupe cyclique est cyclique.\n\nEn particulier, si $G=\\langle g\\rangle$, alors tout sous-groupe $H\\leq G$ est de la forme $H=\\langle g^d\\rangle$ pour un certain entier $d\\geq 0$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-14",
+        "title": "Ordre d'une puissance",
+        "themes": [
+            "Groupes",
+            "Groupes cycliques"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe et $x\\in G$ un élément d'ordre fini $n$. Pour tout entier $k$, l'ordre de $x^k$ est donné par\n\n$$\\operatorname{ord}(x^k)=\\frac{n}{\\operatorname{pgcd}(n,k)}.$$\n\nEn particulier, $x^k=e$ si et seulement si $n$ divise $k$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-15",
+        "title": "Théorème de Cauchy",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini et $p$ un nombre premier divisant $|G|$. Alors $G$ possède au moins un élément d'ordre $p$.\n\nAutrement dit, il existe $g\\in G$ tel que\n\n$$g\\neq e\\quad\\text{et}\\quad g^p=e.$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-16",
+        "title": "Théorèmes de Sylow",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini d'ordre $|G|=p^n m$, où $p$ est un nombre premier et $p\\nmid m$. Les théorèmes de Sylow affirment :\n\n1. **Existence :** $G$ possède au moins un sous-groupe d'ordre $p^n$.\n2. **Conjugaison :** tous les sous-groupes d'ordre $p^n$ sont conjugués entre eux.\n3. **Inclusion :** tout $p$-sous-groupe de $G$ est inclus dans un sous-groupe de Sylow.\n4. **Dénombrement :** si $n_p$ désigne le nombre de sous-groupes de Sylow, alors\n\n$$n_p\\equiv 1\\pmod p\\qquad\\text{et}\\qquad n_p\\mid m.$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-17",
+        "title": "Tout groupe d'ordre premier est cyclique",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini tel que $|G|=p$, où $p$ est un nombre premier. Alors $G$ est cyclique.\n\nEn particulier, tout élément non neutre de $G$ est un générateur de $G$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-18",
+        "title": "Un groupe d'ordre 4 est abélien",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe d'ordre $4$ est abélien. Il est isomorphe soit au groupe cyclique $\\mathbb Z/4\\mathbb Z$, soit au groupe de Klein $\\mathbb Z/2\\mathbb Z\\times\\mathbb Z/2\\mathbb Z$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-20",
+        "title": "Équation aux classes",
+        "themes": [
+            "Groupes",
+            "Actions de groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini. En notant $x_1,\\ldots,x_r$ des représentants des classes de conjugaison qui ne sont pas réduites à un élément et $C_G(x_i)$ leurs centralisateurs, on a\n\n$$|G|=|Z(G)|+\\sum_{i=1}^{r}[G:C_G(x_i)].$$\n\nCette égalité est appelée **équation aux classes**.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-21",
+        "title": "Théorème de Cayley",
+        "themes": [
+            "Groupes",
+            "Permutations"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe $G$ est isomorphe à un sous-groupe du groupe des permutations de son ensemble sous-jacent.\n\nAutrement dit, il existe un morphisme injectif\n\n$$G\\longrightarrow \\mathfrak S(G).$$\n\nSi $G$ est fini d'ordre $n$, alors $G$ est isomorphe à un sous-groupe de $\\mathfrak S_n$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-12",
+        "title": "Caractérisation des groupes cycliques finis",
+        "themes": [
+            "Groupes",
+            "Groupes cycliques"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $(G,\\star)$ un groupe cyclique fini d'ordre $n$, alors $(G,\\star)\\simeq (\\Z/n\\Z,+)$ \n\nPour tout diviseur positif $d$ de $n$, il existe un unique sous-groupe de $G$ d'ordre $d$.\n\nDe plus, les sous-groupes de $G$ sont exactement les sous-groupes d'ordre divisant $n$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-13",
+        "title": "Générateurs d'un groupe cyclique fini",
+        "themes": [
+            "Groupes",
+            "Groupes cycliques"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G=\\langle g\\rangle$ un groupe cyclique d'ordre $n$. Pour tout entier $k$, l'élément $g^k$ est un générateur de $G$ si et seulement si\n\n$$\\operatorname{pgcd}(k,n)=k\\wedge n=1.$$\n\nPar conséquent, le nombre de générateurs de $G$ est $\\varphi(n)$, où $\\varphi$ désigne l'indicatrice d'Euler.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-19",
+        "title": "Un groupe fini de cardinalité première est simple",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe fini d'ordre premier est simple : ses seuls sous-groupes distingués sont le sous-groupe trivial et le groupe lui-même. De plus \n$$\\forall (G,\\star)\\in \\G, [|G|=p\\in \\Prob] \\Rightarrow [(G,\\star)\\simeq (\\Z/p\\Z,+)]$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-28",
+        "title": "Théorème de factorisation des morphismes",
+        "themes": [
+            "Groupes",
+            "Morphismes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soient $G,H,K$ des groupes et $f:G\\to H$, $g:G\\to K$ deux morphismes. Si $\\ker(f)\\subseteq\\ker(g)$, alors il existe un unique morphisme $\\overline g:\\operatorname{Im}(f)\\to K$ tel que\n\n$$g=\\overline g\\circ f.$$\n\nCe morphisme est défini par $\\overline g(f(x))=g(x)$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-23",
+        "title": "Image d'un groupe abélien",
+        "themes": [
+            "Groupes",
+            "Morphismes"
+        ],
+        "category": "Théorèmes",
+        "content": "L'image d'un groupe abélien par un morphisme de groupes est un groupe abélien.\nDit autrement $\\forall G\\in \\G_c,\\forall (G',\\star)\\in \\G,\\forall f\\in \\GMorph(G,G'), (f(G),\\star)\\in \\G_c$\n\nEn particulier, si $f:G\\to H$ est un morphisme surjectif et si $G$ est abélien, alors $H$ est abélien.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-22",
+        "title": "L'image et le noyau d'un morphisme",
+        "themes": [
+            "Groupes",
+            "Morphismes",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $f:G\\to H$ un morphisme de groupes. Alors :\n\n1. $\\ker(f)$ est un sous-groupe distingué de $G$ ;\n2. $\\operatorname{Im}(f)$ est un sous-groupe de $H$ ;\n3. $f$ est injectif si et seulement si $\\ker(f)=\\{e_G\\}$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-25",
+        "title": "Théorème d'isomorphisme numéro 2",
+        "themes": [
+            "Groupes",
+            "Morphismes",
+            "Groupes quotients",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Soient $G$ un groupe, $H\\leq G$ et $N\\trianglelefteq G$. Alors $HN$ est un sous-groupe de $G$, $N$ est distingué dans $HN$, et\n\n$$\\frac{HN}{N}\\simeq\\frac{H}{H\\cap N}.$$\n\nCe résultat est appelé deuxième théorème d'isomorphisme.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-26",
+        "title": "Théorème d'isomorphisme numéro 3",
+        "themes": [
+            "Groupes",
+            "Morphismes",
+            "Groupes quotients",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Soient $G$ un groupe et $H,N$ deux sous-groupes distingués de $G$ tels que $N\\subseteq H$. Alors $H/N$ est un sous-groupe distingué de $G/N$ et\n\n$$\\frac{G/N}{H/N}\\simeq\\frac{G}{H}.$$\n\nCe résultat est appelé troisième théorème d'isomorphisme.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-27",
+        "title": "Correspondance des sous-groupes dans un quotient",
+        "themes": [
+            "Groupes",
+            "Morphismes",
+            "Groupes quotients",
+            "Groupe Distingué"
+        ],
+        "category": "Théorèmes",
+        "content": "Soient $G$ un groupe et $N\\trianglelefteq G$. La projection canonique $\\pi:G\\to G/N$ établit une bijection croissante entre :\n\n- les sous-groupes de $G$ contenant $N$ ;\n- les sous-groupes de $G/N$.\n\nCette bijection associe à un sous-groupe $H$ contenant $N$ le sous-groupe $H/N$ de $G/N$. Son application réciproque associe à $K\\leq G/N$ sa préimage $\\pi^{-1}(K)$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-31",
+        "title": "Théorème orbite-stabilisateur",
+        "themes": [
+            "Groupes",
+            "Actions de groupes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit un groupe $G$ agissant sur un ensemble $X$ et soit $x\\in X$. L'application\n\n$$\\begin{aligned}G/\\operatorname{Stab}_G(x)&\\longrightarrow\\operatorname{Orb}_G(x)\\\\g\\operatorname{Stab}_G(x)&\\longmapsto g\\cdot x\\end{aligned}$$\n\nest une bijection. Par conséquent, si $G$ est fini :\n\n$$|\\operatorname{Orb}_G(x)|=[G:\\operatorname{Stab}_G(x)]=\\frac{|G|}{|\\operatorname{Stab}_G(x)|}.$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-32",
+        "title": "Théorème de Burnside",
+        "themes": [
+            "Groupes",
+            "Actions de groupes",
+            "Dénombrement"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit un groupe fini $G$ agissant sur un ensemble fini $X$. Le nombre d'orbites de cette action est égal à la moyenne du nombre de points fixes des éléments de $G$ :\n\n$$|X/G|=\\frac{1}{|G|}\\sum_{g\\in G}|\\operatorname{Fix}(g)|,$$\n\noù $\\operatorname{Fix}(g)=\\{x\\in X\\mid g\\cdot x=x\\}$.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-34",
+        "title": "Classification des groupes abéliens finis",
+        "themes": [
+            "Groupes",
+            "Groupes abéliens"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe abélien fini est isomorphe à un produit direct de groupes cycliques d'ordres des puissances de nombres premiers.\n\nDe manière équivalente, tout groupe abélien fini est isomorphe à un produit de la forme\n\n$$\\mathbb Z/n_1\\mathbb Z\\times\\cdots\\times\\mathbb Z/n_r\\mathbb Z,$$\n\navec $n_1\\mid n_2\\mid\\cdots\\mid n_r$.\n\nLes entiers $n_1,\\ldots,n_r$ sont uniquement déterminés par le groupe, si l'on omet les facteurs triviaux.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-35",
+        "title": "Un groupe d'ordre p puissance possède un centre non trivial",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $G$ un groupe fini dont l'ordre est une puissance d'un nombre premier $p$. Alors son centre est non trivial :\n\n$$Z(G)\\neq\\{e\\}.$$\n\nEn particulier, tout $p$-groupe non trivial possède au moins un élément central non neutre.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-36",
+        "title": "Tout groupe fini d'ordre p puissance est nilpotent",
+        "themes": [
+            "Groupes",
+            "Groupes finis"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe fini dont l'ordre est une puissance d'un nombre premier est un groupe nilpotent.\n\nAutrement dit, si $|G|=p^n$, alors sa suite centrale ascendante atteint $G$ en un nombre fini d'étapes.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-37",
+        "title": "Un groupe nilpotent possède un centre non trivial",
+        "themes": [
+            "Groupes"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe nilpotent non trivial possède un centre non trivial :\n\n$$G\\neq\\{e\\}\\quad\\Longrightarrow\\quad Z(G)\\neq\\{e\\}.$$",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-33",
+        "title": "Théorème de classification des groupes cycliques",
+        "themes": [
+            "Groupes",
+            "Groupes cycliques"
+        ],
+        "category": "Théorèmes",
+        "content": "Tout groupe cyclique infini est isomorphe à $(\\mathbb Z,+)$. Tout groupe cyclique fini d'ordre $n$ est isomorphe à $(\\mathbb Z/n\\mathbb Z,+)$.\n\nAinsi, deux groupes cycliques sont isomorphes si et seulement s'ils ont le même ordre.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-29",
+        "title": "Ordre de l'image d'un morphisme de groupes finis",
+        "themes": [
+            "Groupes",
+            "Morphismes"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $f:G\\to H$ un morphisme de groupes, avec $G$ fini. Alors\n\n$$|G|=|\\ker(f)|\\cdot|\\operatorname{Im}(f)|.$$\n\nEn particulier, le cardinal de l'image divise le cardinal du groupe de départ.",
+        "demonstration_ids": []
+    },
+    {
+        "id": "theoreme-24",
+        "title": "Théorème d'isomorphisme numéro 1",
+        "themes": [
+            "Groupes",
+            "Morphismes",
+            "Groupes quotients"
+        ],
+        "category": "Théorèmes",
+        "content": "Soit $f:G\\to H$ un morphisme de groupes. Alors le groupe quotient $G/\\ker(f)$ est isomorphe à l'image de $f$ :\n\n$$G/\\ker(f)\\simeq\\operatorname{Im}(f).$$\n\nEn particulier, si $f$ est surjectif, alors\n\n$$G/\\ker(f)\\simeq H.$$",
+        "demonstration_ids": [
+            "1b34f94f-c0fd-4a08-9750-fe76c90f9f75"
+        ]
     }
 ]
